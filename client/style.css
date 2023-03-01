@@ -8,9 +8,7 @@
 }
 
 body {
-  background-image: url('aigirl.png');
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: #343541;
 }
 
 #app {
