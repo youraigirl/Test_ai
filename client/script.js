@@ -1,4 +1,4 @@
-import bot from './assets/bot.svg';
+import bot from './assets/heart.svg';
 import user from './assets/user.svg';
 
 const form = document.querySelector('form');
@@ -29,6 +29,19 @@ function typeText(element, text) {
       index++
     } else {
       clearInterval(interval)
+
+      // Speak the text using TTS
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.pitch = 1.5;
+      const voices = speechSynthesis.getVoices();
+      console.log(voices);
+      utterance.voice = voices.find(voice => voice.name === 'Microsoft Zira - English (United States)');
+      speechSynthesis.speak(utterance);
+
+      // Obtain the list of available voices
+      console.log(voices);
+      console.log(utterance.voice);
+
     }
   }, 20)
 }
