@@ -14,7 +14,7 @@ body {
 #app {
   width: 100vw;
   height: 100vh;
-  background-image: url('aigirl6.png');
+  background-image: url('aigirl5.png');
   background-size: cover;
   background-repeat: no-repeat;
   transform: scaleX(-1);
@@ -122,6 +122,20 @@ form {
   display: flex;
   flex-direction: row;
   gap: 10px;
+}
+
+#startRecognition {
+  background-color: #0066ff;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 14px;
+  width: 36px;
+  height: 36px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
 }
 
 textarea {

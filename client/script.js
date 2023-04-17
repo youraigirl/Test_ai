@@ -17,7 +17,7 @@ function loader(element) {
     if (element.textContent === '....') {
        element.textContent = '';
     }
-  }, 300);
+  }, 30);
 }
 
 function typeText(element, text) {
@@ -132,3 +132,51 @@ form.addEventListener('keyup', (e) => {
     handleSubmit(e)
   }
 })
+
+function initSpeechRecognition() {
+  const startRecognitionButton = document.querySelector('#startRecognition');
+
+  startRecognitionButton.addEventListener('click', () => {
+    // Check if the browser supports speech recognition
+    if ('webkitSpeechRecognition' in window) {
+      const recognition = new webkitSpeechRecognition();
+      recognition.continuous = true;
+      recognition.interimResults = true;
+
+      recognition.onstart = () => {
+        console.log('Speech recognition started');
+      };
+
+      recognition.onresult = (event) => {
+        const lastResultIndex = event.results.length - 1;
+        const transcript = event.results[lastResultIndex][0].transcript;
+        if (event.results[lastResultIndex].isFinal) {
+          handleSpokenInput(transcript);
+        }
+      };
+
+      recognition.onerror = (event) => {
+        console.error('Speech recognition error:', event.error);
+      };
+
+      recognition.start();
+    } else {
+      alert('Your browser does not support speech recognition. Please use a browser that supports it, such as Google Chrome.');
+    }
+  });
+}
+
+function handleSpokenInput(transcript) {
+  // You can process the transcript here, e.g., send it as a message to the chatbot
+  console.log('Spoken input:', transcript);
+  // Simulate a form submit event to handle the spoken input as if it was typed
+  const submitEvent = new Event('submit');
+  form.prompt.value = transcript;
+  handleSubmit(submitEvent);
+  form.reset(); // Clear the input field after handling the spoken input
+}
+
+  
+
+
+initSpeechRecognition();

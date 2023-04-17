@@ -8,19 +8,11 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <script>
-      // Wait for the page to load
-      window.addEventListener('load', () => {
-        // Obtain the list of available voices
-        const voices = speechSynthesis.getVoices();
-
-        // Log the list of voices to the console
-        console.log(voices);
-      });
-    </script>
     <div id="app">
       <div id="chat_container"></div>
       <form>
+        <button id="startRecognition">Start Voice</button>
+
         <textarea name="prompt" rows="1" cols="1" placeholder="I am at your disposal"></textarea>
         <button type="submit"><img src="assets/send.svg" alt="submit icon" /></button>
       </form>
